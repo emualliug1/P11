@@ -28,7 +28,10 @@ def index():
 
 @app.route('/show_summary', methods=['POST'])
 def show_summary():
-    club = [club for club in clubs if club['email'] == request.form['email']][0]
+    try:
+        club = [club for club in clubs if club['email'] == request.form['email']][0]
+    except (IndexError, KeyError):
+        return page_not_found()
     return render_template('welcome.html', club=club, competitions=competitions)
 
 
@@ -56,3 +59,8 @@ def purchase_places():
 @app.route('/logout')
 def logout():
     return redirect(url_for('index'))
+
+
+@app.errorhandler(404)
+def page_not_found():
+    return render_template('404.html'), 404
