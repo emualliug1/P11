@@ -5,7 +5,6 @@ from load_json import load_clubs, load_competitions
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'something_special'
-
     competitions = load_competitions()
     clubs = load_clubs()
 
