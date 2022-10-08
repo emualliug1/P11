@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% block title %} Index {% endblock %}
+{% block content %}
+    <a href={{ url_for('index')}}>Welcome</a>
 <hr>
 <table>
     <thead>
@@ -15,3 +19,4 @@
         {% endfor %}
     </tbody>
 </table>
+{% endblock %}

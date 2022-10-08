@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href={{ url_for('static',filename='style.css')}}>
     <head>
         <title>{% block title %}{% endblock title %}- GudLift</title>
     </head>
+     <div class="message">{% include 'includes/messages.html' %}</div>
     <body>
         {% block content %}{% endblock content %}
     </body>

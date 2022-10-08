@@ -2,30 +2,35 @@
 {% block title %} Welcome {% endblock %}
 {% block content %}
         <h2>Welcome, {{club['email']}} </h2><a href="{{url_for('logout')}}">Logout</a>
-
-    {% with messages = get_flashed_messages()%}
-    {% if messages %}
-        <ul>
-       {% for message in messages %}
-            <li>{{message}}</li>
-        {% endfor %}
-       </ul>
-    {% endif%}
     Points available: {{club['points']}}
-    <h3>Competitions:</h3>
+    <h3>Nouvelle Competitions:</h3>
     <ul>
-        {% for comp in competitions%}
+        {% for comp in new_competitions%}
         <li>
-            {{comp['name']}}<br />
-            Date: {{comp['date']}}</br>
+            <hr>
+            {{comp['name']}}<br/>
+            Date: {{comp['date']}}
             Number of Places: {{comp['numberOfPlaces']}}
             {%if comp['numberOfPlaces']|int >0%}
             <a href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
             {%endif%}
         </li>
-        <hr />
+            <hr>
         {% endfor %}
     </ul>
-    {%endwith%}
+       <h3>Ancienne Competitions:</h3>
+    <ul>
+        {% for comp in old_competitions %}
+        <li>
+            <hr>
+            {{comp['name']}}<br />
+            Date: {{comp['date']}}
+            Réservation clôturée
+            <hr>
+        </li>
+
+        {% endfor %}
+    </ul>
+
 
 {% endblock %}

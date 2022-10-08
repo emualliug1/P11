@@ -40,3 +40,15 @@ tbody td {
 tfoot th {
   text-align: right;
 }
+
+.error {
+  color: red;
+}
+
+.success{
+  color: green;
+}
+
+ul{
+   list-style-type: none;
+}
