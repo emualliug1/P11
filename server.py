@@ -11,7 +11,7 @@ from flask import (
     redirect,
     flash,
     url_for)
-from essential import (
+from utils import (
     load_clubs,
     load_competitions,
     sorted_old_competitions,
@@ -29,7 +29,6 @@ MAX_BOOKED_PLACES = 12
 def create_app():
     app = Flask(__name__)
     app.secret_key = 'something_special'
-
     competitions = load_competitions()
     clubs = load_clubs()
     new_competitions = sorted_new_competitions(competitions)
@@ -105,7 +104,8 @@ def create_app():
                         return render_template('welcome.html',
                                                club=club,
                                                new_competitions=new_competitions,
-                                               old_competitions=old_competitions)
+                                               old_competitions=old_competitions,
+                                            )
 
                     except ValueError as first_error:
                         flash(f"{first_error}", 'error')

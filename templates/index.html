@@ -1,16 +1,43 @@
+
 {% extends 'base.html' %}
 {% block title %} Index {% endblock %}
 {% block content %}
-    <h1>Welcome to the GUDLFT Registration Portal!</h1>
-    <a href={{ url_for('tableau_points')}}>Club Points</a>
-    <br>
-    <br>
-    Please enter your secretary email to continue:
-    <br>
-    <br>
+    <div class="bg-image h-100">
+    <div class="mask d-flex align-items-center h-100" style="background-color: #f3f2f2;">
+    <div class="container">
     <form action="/show_summary" method="post">
-        <label for="email">Email:</label>
-        <input type="email" name="email" id=""/>
-        <button type="submit">Enter</button>
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-lg-9 col-xl-8">
+                <div class="card" style="border-radius: 1rem;">
+                  <div class="row g-0">
+                    <div class="col-md-4 d-flex align-items-center justify-content-center ">
+                        <img src="/static/img/gudlft.png" alt="gudlft" class="img-fluid"/>
+                    </div>
+                      <div class="col-md-8 d-flex align-items-center">
+                          <div class="card-body py-5 px-4 p-md-5">
+                              <h2 class="fw-bold mb-4" style="color:#92aad0;">Welcome to the GUDLFT!</h2>
+                              <p class="fw-light mb-4">Please enter your secretary email to continue:</p>
+                                  <div class="form-outline mb-4">
+                                      <div class="input-group input-group-lg">
+                                          <label class="input-group-text" for="email">Email:</label>
+                                          <input class="form-control" aria-label="email" type="email" name="email">
+                                      </div>
+                                  </div>
+                                  <div class="d-flex justify-content-end pt-1 mb-4">
+                                      <button class="btn btn-primary btn-rounded" type="submit">Log in</button>
+                                  </div>
+                               <p class="fw-light mb-4">Pour consulter le tableau de points cliquer sur le bouton:</p>
+                              <div class="d-flex justify-content-end pt-1 mb-4">
+                                  <a class="btn btn-primary btn-rounded" href="{{ url_for('tableau_points')}}">Club Points</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
     </form>
+    </div>
+    </div>
+    </div>
 {% endblock %}

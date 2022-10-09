@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 {% block title %} Booking {% endblock %}
 {% block content %}
-    <h2>{{competition['name']}}</h2>
-    Places available: {{competition['numberOfPlaces']}}
+    <div class="container w-25">
+        <h1 class="fw-bold mb-4">Booking</h1>
+    <h2 class="fw-light mb-4">Compétition: {{competition['name']}}</h2>
+        <h3 class="fw-light mb-4">Places available: {{competition['numberOfPlaces']}}</h3>
     <form action="/purchase_places" method="post">
         <input type="hidden" name="club" value="{{club['name']}}">
         <input type="hidden" name="competition" value="{{competition['name']}}">
-        <label for="places">How many places?</label><input type="number" name="places" id="places"/>
-        <button type="submit">Book</button>
+
+
+            <div class="form-outline mb-4">
+              <div class="input-group input-group-lg">
+                  <label class="input-group-text" for="places">Places:</label>
+                  <input class="form-control" aria-label="places" type="number" name="places">
+              </div>
+            </div>
+
+
+          <div class="d-flex justify-content-end pt-1 mb-4">
+              <button class="btn btn-primary btn-rounded" type="submit">Book</button>
+          </div>
+
     </form>
+    </div>
 {% endblock %}
