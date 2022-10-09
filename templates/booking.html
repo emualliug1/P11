@@ -8,20 +8,15 @@
     <form action="/purchase_places" method="post">
         <input type="hidden" name="club" value="{{club['name']}}">
         <input type="hidden" name="competition" value="{{competition['name']}}">
-
-
             <div class="form-outline mb-4">
               <div class="input-group input-group-lg">
                   <label class="input-group-text" for="places">Places:</label>
                   <input class="form-control" aria-label="places" type="number" name="places">
               </div>
             </div>
-
-
           <div class="d-flex justify-content-end pt-1 mb-4">
               <button class="btn btn-primary btn-rounded" type="submit">Book</button>
           </div>
-
     </form>
     </div>
 {% endblock %}

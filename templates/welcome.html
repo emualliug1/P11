@@ -23,25 +23,32 @@
             <tr>
                 <th scope="col">Competition</th>
                 <th scope="col">Date</th>
-                <th scope="col">Nombre de places</th>
+                <th scope="col">Places restante</th>
+                <th scope="col">Places Réservé</th>
                 <th scope="col">Réservation</th>
             </tr>
      </thead>
             <tbody>
-            {% for comp in new_competitions%}
+            {% for comp in new_competitions %}
                 <tr>
                     <td>{{comp['name']}}</td>
                     <td>{{comp['date']}}</td>
                     <td>{{comp['numberOfPlaces']}}</td>
-                    {%if comp['numberOfPlaces']|int >0 %}
-                        <td>
-                            <a class="btn btn-primary btn-rounded" href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a>
-                    {% endif %}
-                    </td>
-                </tr>
+                    {% for item in places_reserved %}
+                        {% if item['competition'] == comp['name'] and item['club'] == club['name'] %}
+                            <td>{{ item['placesRestantes'] }}</td>
+                        {% endif %}
+                        {% if item['competition'] == comp['name'] and item['club'] == club['name'] and item['placesRestantes'] <= 11 and item['placesRestantes'] != 12 %}
+                        <td><a class="btn btn-primary btn-rounded" href="{{ url_for('book',competition=comp['name'],club=club['name']) }}">Book Places</a></td>
+                        {% elif item['competition'] == comp['name'] and item['club'] == club['name'] and item['placesRestantes'] == 12  %}
+                        <td><a class="btn btn-danger btn-rounded" >Book Over</a></td>
+                        {% endif %}
+                    {% endfor %}
             {% endfor %}
+                </tr>
             </tbody>
         </table>
+
     </div>
         <div class="row">
         <h3>Ancienne Compétitions</h3>
@@ -51,18 +58,23 @@
             <tr>
                 <th scope="col">Competition</th>
                 <th scope="col">Date</th>
-                <th scope="col">Nombre de places</th>
+                <th scope="col">Places Restante</th>
+                <th scope="col">Places Réservé</th>
                 <th scope="col">Réservation</th>
             </tr>
      </thead>
             <tbody>
-            {% for comp in old_competitions%}
+            {% for comp in old_competitions %}
                 <tr>
                     <td>{{comp['name']}}</td>
                     <td>{{comp['date']}}</td>
-                    <td>0</td>
-                    <td><a class="btn btn-danger btn-rounded">Réservation terminé</a></td>
-                </tr>
+                    <td>{{comp['numberOfPlaces']}}</td>
+                    {% for item in places_reserved %}
+                        {% if item['competition'] == comp['name'] and item['club'] == club['name'] %}
+                            <td>{{ item['placesRestantes'] }}</td>
+                        {% endif %}
+                    {% endfor %}
+            <td><a class="btn btn-danger btn-rounded" >Book Over</a></td>
             {% endfor %}
             </tbody>
         </table>

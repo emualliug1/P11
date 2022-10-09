@@ -47,7 +47,8 @@ def create_app():
                 return render_template('welcome.html',
                                        club=club,
                                        new_competitions=new_competitions,
-                                       old_competitions=old_competitions)
+                                       old_competitions=old_competitions,
+                                       places_reserved=places_reserved)
             except IndexError:
                 if request.form['email'] == '':
                     flash('Veuillez rentrer une adresse mail.', 'error')
@@ -100,12 +101,12 @@ def create_app():
                         competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - places_required
                         club['points'] = int(club['points']) - places_required
                         flash(f'Vous avez réservé {places_required} places.', 'success')
-
                         return render_template('welcome.html',
                                                club=club,
                                                new_competitions=new_competitions,
                                                old_competitions=old_competitions,
-                                            )
+                                               places_reserved=places_reserved
+                                               )
 
                     except ValueError as first_error:
                         flash(f"{first_error}", 'error')
