@@ -6,12 +6,11 @@
 # Importation de fonction externe :
 import json
 from datetime import datetime
-from flask import redirect, url_for
 #############################################
 # Définition des constantes
 MAX_BOOKED_PLACES = 12
 #############################################
-# Définition de fonction essentielle
+# Définition de fonction
 
 
 def load_competitions():
@@ -60,5 +59,3 @@ def update_places_reserved(competition, club, places_reserved, places_required):
             else:
                 raise ValueError("vous ne pouvez pas réserver plus de 12 places")
     return places_reserved
-
-
