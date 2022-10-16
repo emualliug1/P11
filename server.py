@@ -37,7 +37,7 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template('index.html', clubs=clubs)
+        return render_template('index.html', clubs=clubs, name=index)
 
     @app.route('/show_summary', methods=['POST'])
     def show_summary():
